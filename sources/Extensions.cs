@@ -5,7 +5,7 @@ namespace rharel.Optional
     /// <summary>
     /// Contains extension methods for optional value types.
     /// </summary>
-    public static class OptionalExtensions
+    public static class Extensions
     {
         /// <summary>
         /// Invokes the specified action if the specified option contains some 
