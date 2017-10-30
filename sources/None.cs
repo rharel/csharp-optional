@@ -1,4 +1,4 @@
-﻿namespace rharel.Functional.Optional
+﻿namespace rharel.Functional
 {
     /// <summary>
     /// Represents a void optional value.

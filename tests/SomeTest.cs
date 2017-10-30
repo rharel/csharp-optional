@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace rharel.Functional.Optional.Tests
+namespace rharel.Functional.Tests
 {
     [TestFixture]
     public sealed class SomeTest

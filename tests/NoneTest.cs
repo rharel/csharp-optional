@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace rharel.Functional.Optional.Tests
+namespace rharel.Functional.Tests
 {
     [TestFixture]
     public sealed class NoneTest

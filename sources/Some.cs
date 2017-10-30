@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace rharel.Functional.Optional
+namespace rharel.Functional
 {
     /// <summary>
     /// Represents a non-void optional value.

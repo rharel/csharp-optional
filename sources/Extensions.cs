@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace rharel.Functional.Optional
+namespace rharel.Functional
 {
     /// <summary>
     /// Contains extension methods for optional value types.
