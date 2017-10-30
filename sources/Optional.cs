@@ -1,4 +1,4 @@
-﻿namespace rharel.Optional
+﻿namespace rharel.Functional.Optional
 {
     /// <summary>
     /// Represents an optional value type with two states: one that contains 
