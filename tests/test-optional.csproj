@@ -6,7 +6,7 @@
     <ProjectGuid>{F1F0AD68-5314-4622-A952-8CD4183C8C9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>rharel.Optional.Tests</AssemblyName>
+    <AssemblyName>rharel.Functional.Optional.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -37,7 +37,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>rharel.Optional.Tests</RootNamespace>
+    <RootNamespace>rharel.Functional.Optional.Tests</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
