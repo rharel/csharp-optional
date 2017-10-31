@@ -72,5 +72,21 @@ namespace rharel.Functional.Tests
             Assert.AreEqual(original, original);
             Assert.AreEqual(original, good_copy);
         }
+        [Test]
+        public void Test_Equals_WhenCastUp()
+        {
+            var source = new Some<FooDerived>(new FooDerived());
+            var target = source.Cast<Foo>();
+
+            Assert.AreEqual(source, target);
+        }
+        [Test]
+        public void Test_Equals_WhenCastDown()
+        {
+            var source = new Some<Foo>(new FooDerived());
+            var target = source.Cast<FooDerived>();
+
+            Assert.AreEqual(source, target);
+        }
     }
 }

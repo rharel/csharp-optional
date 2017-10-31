@@ -3,10 +3,18 @@
     /// <summary>
     /// Represents a void optional value.
     /// </summary>
-    /// <typeparam name="T">
-    /// The type of the optional value.
-    /// </typeparam>
-    public struct None<T>: Optional<T>
+    /// <remarks>
+    /// <see cref="None{T}"/> for the generic version.
+    /// </remarks>
+    public interface None: Optional { }
+    /// <summary>
+    /// Represents a void optional value.
+    /// </summary>
+    /// <typeparam name="T">The type of the optional value.</typeparam>
+    /// <remarks>
+    /// <see cref="None"/> for the non-generic version.
+    /// </remarks>
+    public struct None<T>: None, Optional<T>
     {
         /// <summary>
         /// Casts this to a void optional value of the specified type.
@@ -19,12 +27,22 @@
         {
             return new None<TResult>();
         }
+
         /// <summary>
         /// Determines whether this option contains the specified value.
         /// </summary>
         /// <param name="query">The value to check against.</param>
         /// <returns>False.</returns>
         public bool Contains(T query)
+        {
+            return false;
+        }
+        /// <summary>
+        /// Determines whether this option contains the specified value.
+        /// </summary>
+        /// <param name="query">The value to check against.</param>
+        /// <returns>False.</returns>
+        public bool Contains(object query)
         {
             return false;
         }
@@ -38,7 +56,7 @@
         /// </returns>
         public override bool Equals(object obj)
         {
-            return obj is None<T>;
+            return obj is None;
         }
         /// <summary>
         /// Returns a hash code for this instance.

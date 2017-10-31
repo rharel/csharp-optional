@@ -6,10 +6,24 @@ namespace rharel.Functional
     /// <summary>
     /// Represents a non-void optional value.
     /// </summary>
-    /// <typeparam name="T">
-    /// The type of the optional value.
-    /// </typeparam>
-    public struct Some<T>: Optional<T>
+    /// <remarks>
+    /// <see cref="Some{T}"/> for the generic version.
+    /// </remarks>
+    public interface Some: Optional
+    {
+        /// <summary>
+        /// Gets the value contained in this option.
+        /// </summary>
+        object Value { get; }
+    }
+    /// <summary>
+    /// Represents a non-void optional value.
+    /// </summary>
+    /// <typeparam name="T">The type of the optional value.</typeparam>
+    /// <remarks>
+    /// <see cref="Some"/> for the non-generic version.
+    /// </remarks>
+    public struct Some<T>: Some, Optional<T>
     {
         /// <summary>
         /// Creates a new option containing the specified value.
@@ -31,6 +45,10 @@ namespace rharel.Functional
         /// Gets the value contained in this option.
         /// </summary>
         public T Value { get; private set; }
+        /// <summary>
+        /// Gets the value contained in this option.
+        /// </summary>
+        object Some.Value => Value;
 
         /// <summary>
         /// Casts the value of this and wraps it in a new option.
@@ -43,6 +61,7 @@ namespace rharel.Functional
         {
             return new Some<TResult>((TResult)(object)Value);
         }
+
         /// <summary>
         /// Determines whether this option contains the specified value.
         /// </summary>
@@ -54,6 +73,17 @@ namespace rharel.Functional
         {
             return EqualityComparer<T>.Default.Equals(query, Value);
         }
+        /// <summary>
+        /// Determines whether this option contains the specified value.
+        /// </summary>
+        /// <param name="query">The value to check against.</param>
+        /// <returns>
+        /// True iff this option contains <paramref name="query"/>.
+        /// </returns>
+        public bool Contains(object query)
+        {
+            return query is T && Contains((T)query);
+        }
 
         /// <summary>
         /// Determines whether the specified object is equal to this instance.
@@ -64,11 +94,14 @@ namespace rharel.Functional
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Some<T>)) { return false; }
-
-            var other = (Some<T>)obj;
-
-            return EqualityComparer<T>.Default.Equals(other.Value, Value);
+            if (obj is Some other)
+            {
+                if (other.Value is T other_value)
+                {
+                    return other_value.Equals(Value);
+                }
+            }
+            return false;
         }
         /// <summary>
         /// Returns a hash code for this instance.

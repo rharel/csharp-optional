@@ -5,6 +5,9 @@ namespace rharel.Functional.Tests
     [TestFixture]
     public sealed class NoneTest
     {
+        private class Foo { }
+        private sealed class FooDerived : Foo { }
+
         [Test]
         public void Test_Cast()
         {
@@ -21,14 +24,30 @@ namespace rharel.Functional.Tests
         {
             var original = new None<int>();
             var good_copy = new None<int>();
-            var flawed_type_copy = new None<string>();
+            var other_type_copy = new None<string>();
 
             Assert.AreNotEqual(original, null);
             Assert.AreNotEqual(original, "incompatible type");
-            Assert.AreNotEqual(original, flawed_type_copy);
 
             Assert.AreEqual(original, original);
             Assert.AreEqual(original, good_copy);
+            Assert.AreEqual(original, other_type_copy);
+        }
+        [Test]
+        public void Test_Equals_WhenCastUp()
+        {
+            var source = new None<FooDerived>();
+            var target = source.Cast<Foo>();
+
+            Assert.AreEqual(source, target);
+        }
+        [Test]
+        public void Test_Equals_WhenCastDown()
+        {
+            var source = new None<Foo>();
+            var target = source.Cast<FooDerived>();
+
+            Assert.AreEqual(source, target);
         }
     }
 }
