@@ -25,6 +25,7 @@ namespace rharel.Functional.Tests
             Assert.AreEqual(VALUE, option.Value);
         }
 
+        [Test]
         public void Test_Cast_ToInvalidType()
         {
             Assert.Throws<InvalidCastException>(
