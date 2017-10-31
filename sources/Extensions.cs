@@ -8,6 +8,35 @@ namespace rharel.Functional
     public static class Extensions
     {
         /// <summary>
+        /// Determines whether the specified option contains some value.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of the optional value.
+        /// </typeparam>
+        /// <param name="option">The option to test.</param>
+        /// <returns>
+        /// True iff <paramref name="option"/> contains some value.
+        /// </returns>
+        public static bool IsSome<T>(this Optional<T> option)
+        {
+            return option is Some<T>;
+        }
+        /// <summary>
+        /// Determines whether the specified option is void.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of the optional value.
+        /// </typeparam>
+        /// <param name="option">The option to test.</param>
+        /// <returns>
+        /// True iff <paramref name="option"/> is void.
+        /// </returns>
+        public static bool IsNone<T>(this Optional<T> option)
+        {
+            return !option.IsSome();
+        }
+
+        /// <summary>
         /// Invokes the specified action if the specified option contains some 
         /// value.
         /// 

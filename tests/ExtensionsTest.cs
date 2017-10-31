@@ -13,6 +13,19 @@ namespace rharel.Functional.Tests
         private static readonly Optional<int> SOME = new Some<int>(VALUE);
 
         [Test]
+        public void Test_IsSome()
+        {
+            Assert.IsFalse(NONE.IsSome());
+            Assert.IsTrue(SOME.IsSome());
+        }
+        [Test]
+        public void Test_IsNone()
+        {
+            Assert.IsTrue(NONE.IsNone());
+            Assert.IsFalse(SOME.IsNone());
+        }
+
+        [Test]
         public void Test_ForSome_WithNullAction()
         {
             var option = new Mock<Optional<int>>().Object;
