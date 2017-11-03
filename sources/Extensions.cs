@@ -75,7 +75,7 @@ namespace rharel.Functional
             }
         }
         /// <summary>
-        /// Invokes one of two specified actions based on whether the specified
+        /// Invokes one of two specified actions based on the specified
         /// option's variant.
         /// 
         /// If the option does contain some value, it is passed to the 
@@ -175,7 +175,7 @@ namespace rharel.Functional
         }
         /// <summary>
         /// Maps the value of the specfied option using one of two specified 
-        /// expressions, based on whether the specified option's variant.
+        /// expressions, based on the specified option's variant.
         /// 
         /// If the option does contain some value, it is passed to the 
         /// specified expression as an argument.
