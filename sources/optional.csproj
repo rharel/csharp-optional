@@ -30,7 +30,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>rharel.Optional</RootNamespace>
+    <RootNamespace>rharel.Functional</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

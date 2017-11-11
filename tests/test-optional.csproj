@@ -37,7 +37,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>rharel.Functional.Optional.Tests</RootNamespace>
+    <RootNamespace>rharel.Functional.Tests</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
