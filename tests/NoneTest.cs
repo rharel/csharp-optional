@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using static rharel.Functional.Option;
 
 namespace rharel.Functional.Tests
 {
@@ -11,20 +12,19 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Cast()
         {
-            Assert.IsInstanceOf(typeof(None<float>), 
-                                new None<int>().Cast<float>());
+            Assert.DoesNotThrow(() => None<int>().Cast<float>()); 
         }
         [Test]
         public void Test_Contains()
         {
-            Assert.IsFalse(new None<int>().Contains(1));
+            Assert.IsFalse(None<int>().Contains(1));
         }
         [Test]
         public void Test_Equals()
         {
-            var original = new None<int>();
-            var good_copy = new None<int>();
-            var other_type_copy = new None<string>();
+            var original = None<int>();
+            var good_copy = None<int>();
+            var other_type_copy = None<string>();
 
             Assert.AreNotEqual(original, null);
             Assert.AreNotEqual(original, "incompatible type");
@@ -36,7 +36,7 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Equals_WhenCastUp()
         {
-            var source = new None<FooDerived>();
+            var source = None<FooDerived>();
             var target = source.Cast<Foo>();
 
             Assert.AreEqual(source, target);
@@ -44,7 +44,7 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Equals_WhenCastDown()
         {
-            var source = new None<Foo>();
+            var source = None<Foo>();
             var target = source.Cast<FooDerived>();
 
             Assert.AreEqual(source, target);

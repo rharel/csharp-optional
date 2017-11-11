@@ -1,6 +1,6 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using static rharel.Functional.Option;
 
 namespace rharel.Functional.Tests
 {
@@ -9,28 +9,26 @@ namespace rharel.Functional.Tests
     {
         private static readonly int VALUE = 1;
 
-        private static readonly Optional<int> NONE = new None<int>();
-        private static readonly Optional<int> SOME = new Some<int>(VALUE);
+        private static readonly Optional<int> NONE = None<int>();
+        private static readonly Optional<int> SOME = Some(VALUE);
 
         [Test]
         public void Test_IsSome()
         {
-            Assert.IsFalse(NONE.IsSome());
-            Assert.IsTrue(SOME.IsSome());
+            Assert.IsFalse(NONE.IsSome);
+            Assert.IsTrue(SOME.IsSome);
         }
         [Test]
         public void Test_IsNone()
         {
-            Assert.IsTrue(NONE.IsNone());
-            Assert.IsFalse(SOME.IsNone());
+            Assert.IsTrue(NONE.IsNone);
+            Assert.IsFalse(SOME.IsNone);
         }
 
         [Test]
         public void Test_ForSome_WithNullAction()
         {
-            var option = new Mock<Optional<int>>().Object;
-
-            Assert.Throws<ArgumentNullException>(() => option.ForSome(null));
+            Assert.Throws<ArgumentNullException>(() => SOME.ForSome(null));
         }
         [Test]
         public void Test_ForSome()
@@ -43,17 +41,15 @@ namespace rharel.Functional.Tests
             });
             Assert.Fail();
         }
-        
+
         [Test]
         public void Test_ForSomeOrElse_WithNullAction()
         {
-            var option = new Mock<Optional<int>>().Object;
-
             Assert.Throws<ArgumentNullException>(
-                () => option.ForSomeOrElse(null, () => { })
+                () => SOME.ForSomeOrElse(null, () => { })
             );
             Assert.Throws<ArgumentNullException>(
-                () => option.ForSomeOrElse(_ => { }, null)
+                () => SOME.ForSomeOrElse(_ => { }, null)
             );
         }
         [Test]
@@ -74,10 +70,8 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_MapSomeOr_WithNullExpression()
         {
-            var option = new Mock<Optional<int>>().Object;
-
             Assert.Throws<ArgumentNullException>(
-                () => option.MapSomeOr(null, 0)
+                () => SOME.MapSomeOr(null, 0)
             );
         }
         [Test]
@@ -90,20 +84,18 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_MapSomOrElse_WithNullExpression()
         {
-            var option = new Mock<Optional<int>>().Object;
-
             Assert.Throws<ArgumentNullException>(
-                () => option.MapSomeOrElse(null, () => 0)
+                () => SOME.MapSomeOrElse(null, () => 0)
             );
             Assert.Throws<ArgumentNullException>(
-                () => option.MapSomeOrElse(_ => 0, null)
+                () => SOME.MapSomeOrElse(_ => 0, null)
             );
         }
         [Test]
         public void Test_MapSomeOrElse()
         {
             Assert.AreEqual(
-                0, 
+                0,
                 NONE.MapSomeOrElse(_ => 1, () => 0)
             );
             Assert.AreEqual(

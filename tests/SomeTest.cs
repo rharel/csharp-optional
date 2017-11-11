@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using static rharel.Functional.Option;
 
 namespace rharel.Functional.Tests
 {
@@ -15,44 +16,44 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Contructor_WithNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Some<Foo>(null));
+            Assert.Throws<ArgumentNullException>(() => Some<Foo>(null));
         }
         [Test]
         public void Test_Constructor()
         {
-            var option = new Some<int>(VALUE);
+            var option = Some<int>(VALUE);
 
-            Assert.AreEqual(VALUE, option.Value);
+            Assert.AreEqual(VALUE, option.Unwrap());
         }
 
         [Test]
         public void Test_Cast_ToInvalidType()
         {
             Assert.Throws<InvalidCastException>(
-                () => new Some<Foo>(new Foo()).Cast<Bar>()
+                () => Some<Foo>(new Foo()).Cast<Bar>()
             );
         }
         [Test]
         public void Test_Cast_Up()
         {
-            var source = new Some<FooDerived>(new FooDerived());
+            var source = Some<FooDerived>(new FooDerived());
             var target = source.Cast<Foo>();
 
-            Assert.IsTrue(target.Contains(source.Value));
+            Assert.IsTrue(target.Contains(source.Unwrap()));
         }
         [Test]
         public void Test_Cast_Down()
         {
-            var source = new Some<Foo>(new FooDerived());
+            var source = Some<Foo>(new FooDerived());
             var target = source.Cast<FooDerived>();
 
-            Assert.IsTrue(target.Contains((FooDerived)source.Value));
+            Assert.IsTrue(target.Contains((FooDerived)source.Unwrap()));
         }
 
         [Test]
         public void Test_Contains()
         {
-            var option = new Some<int>(VALUE);
+            var option = Some<int>(VALUE);
 
             Assert.IsFalse(option.Contains(VALUE + 1));
             Assert.IsTrue(option.Contains(VALUE));
@@ -61,9 +62,9 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Equals()
         {
-            var original = new Some<int>(VALUE);
-            var good_copy = new Some<int>(original.Value);
-            var flawed_value_copy = new Some<int>(original.Value + 1);
+            var original = Some<int>(VALUE);
+            var good_copy = Some<int>(original.Unwrap());
+            var flawed_value_copy = Some<int>(original.Unwrap() + 1);
 
             Assert.AreNotEqual(original, null);
             Assert.AreNotEqual(original, "incompatible type");
@@ -75,7 +76,7 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Equals_WhenCastUp()
         {
-            var source = new Some<FooDerived>(new FooDerived());
+            var source = Some<FooDerived>(new FooDerived());
             var target = source.Cast<Foo>();
 
             Assert.AreEqual(source, target);
@@ -83,7 +84,7 @@ namespace rharel.Functional.Tests
         [Test]
         public void Test_Equals_WhenCastDown()
         {
-            var source = new Some<Foo>(new FooDerived());
+            var source = Some<Foo>(new FooDerived());
             var target = source.Cast<FooDerived>();
 
             Assert.AreEqual(source, target);
