@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['Value',['../structrharel_1_1_optional_1_1_some.html#a93bbfc2eb2493284bf407fdd75a9fc34',1,'rharel::Optional::Some']]]
+  ['issome',['IsSome',['../structrharel_1_1_functional_1_1_optional.html#a581ddbed19b7947f4c6efe73fa4f5576',1,'rharel::Functional::Optional']]]
 ];
