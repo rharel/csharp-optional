@@ -6,7 +6,7 @@ namespace rharel.Functional
     /// <summary>
     /// Implemented by <see cref="Optional{T}"/> for equality checks.
     /// </summary>
-    internal interface Optional
+    internal interface OptionalObject
     {
         /// <summary>
         /// Indicates whether this option contains some value.
@@ -27,7 +27,7 @@ namespace rharel.Functional
     /// some value, and one that does not.
     /// </summary>
     /// <typeparam name="T">The type of the optional value.</typeparam>
-    public struct Optional<T>: Optional
+    public struct Optional<T>: OptionalObject
     {
         /// <summary>
         /// The singleton none instance.
@@ -94,7 +94,7 @@ namespace rharel.Functional
         /// <returns>
         /// True iff this option contains <paramref name="query"/>.
         /// </returns>
-        bool Optional.Contains(object query)
+        bool OptionalObject.Contains(object query)
         {
             if (query is T value) { return Contains(value); }
             else { return false; }
@@ -268,7 +268,7 @@ namespace rharel.Functional
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is Optional other)
+            if (obj is OptionalObject other)
             {
                 if (IsSome) { return other.Contains(_value); }
                 else { return !other.IsSome; }
